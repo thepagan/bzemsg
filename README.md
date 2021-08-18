@@ -1,7 +1,7 @@
 # bzemsg
-A zero knowledge messaging system built on bzedge/zcash.
+A zero knowledge messaging system built on bzedge.
 
-bzemsg uses the encrypted memo field of zcash sheilded transactions to send
+bzemsg uses the encrypted memo field of bzedge sheilded transactions to send
 messages to other parties. The sent messages get stored in the bzedge blockchain
 and the recipient can check for messages at any time (no need to be online at
 the same time). Since the messages get stored in the blockchain, they are on
