@@ -10,7 +10,7 @@ import (
 	"time"
 
 	cli "github.com/urfave/cli"
-	rpc "github.com/whyrusleeping/zmsg/rpc"
+	rpc "github.com/thepagan/bzemsg/rpc"
 )
 
 var Verbose = false
@@ -155,9 +155,9 @@ func CheckMessages(noconf bool) ([]*Message, error) {
 	return allmsgs, nil
 }
 
-var ErrNoAddresses = fmt.Errorf("no addresses to send message from! (create one with the zcash-cli)")
+var ErrNoAddresses = fmt.Errorf("no addresses to send message from! (create one with the bzedge-cli)")
 
-// SendMessage sends a message to a given zcash address using a shielded transaction.
+// SendMessage sends a message to a given bzedge address using a shielded transaction.
 // It returns the transaction ID.
 func SendMessage(from, to, msg string, msgval float64) (string, error) {
 	if from == "" {
@@ -178,7 +178,7 @@ func SendMessage(from, to, msg string, msgval float64) (string, error) {
 	req := &rpc.Request{
 		Method: "z_sendmany",
 		Params: []interface{}{
-			from, // first parameter is address to send from (where the ZEC comes from)
+			from, // first parameter is address to send from (where the BZE comes from)
 			[]interface{}{
 				map[string]interface{}{
 					"amount":  msgval,
@@ -327,7 +327,7 @@ var CheckCmd = cli.Command{
 
 var SendCmd = cli.Command{
 	Name:  "sendmsg",
-	Usage: "send a message to another zmsg user.",
+	Usage: "send a message to another bzemsg user.",
 	Flags: []cli.Flag{
 		cli.StringFlag{
 			Name:  "from",
@@ -340,7 +340,7 @@ var SendCmd = cli.Command{
 		cli.Float64Flag{
 			Name:  "txval",
 			Value: 0.00001,
-			Usage: "specify the amount of ZEC to send with messages.",
+			Usage: "specify the amount of BZE to send with messages.",
 		},
 	},
 	Action: func(c *cli.Context) error {
@@ -369,9 +369,8 @@ var SendCmd = cli.Command{
 
 func main() {
 	app := cli.NewApp()
-	app.Version = "0.1.0"
-	app.Author = "whyrusleeping"
-	app.Email = "why@ipfs.io"
+	app.Version = "0.0.1"
+	app.Author = "thepagan"
 	app.Usage = "send and receive zero knowledge messages"
 	app.Commands = []cli.Command{
 		CheckCmd,
