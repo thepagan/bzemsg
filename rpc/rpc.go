@@ -66,7 +66,7 @@ func (c *Client) Do(obj *Request, out interface{}) error {
 	resp, err := http.DefaultClient.Do(req)
 	if err != nil {
 		if strings.Contains(err.Error(), "connection refused") {
-			return fmt.Errorf("failed to connect to zcash daemon, is it running?")
+			return fmt.Errorf("failed to connect to bzedge daemon, is it running?")
 		}
 		return err
 	}
