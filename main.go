@@ -135,7 +135,8 @@ func getReceivedForAddr(addr string, noconf bool) ([]*Message, error) {
 	return msgs, nil
 }
 
-// CheckMessages returns all messages that the local zcash daemon has received
+// CheckMessages returns all messages that the local bzedge
+daemon has received
 func CheckMessages(noconf bool) ([]*Message, error) {
 	addrs, err := getMyAddresses()
 	if err != nil {
