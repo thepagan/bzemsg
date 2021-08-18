@@ -7,13 +7,13 @@ import (
 	"path/filepath"
 	"strings"
 
-	rpc "github.com/whyrusleeping/zmsg/rpc"
+	rpc "github.com/thepagan/bzemsg/rpc"
 )
 
 func init() {
 	u, p, err := readAuthCreds()
 	if err != nil {
-		fmt.Println("Error reading zcash config: ", err)
+		fmt.Println("Error reading bzedge config: ", err)
 	}
 
 	rpc.DefaultClient.User = u
@@ -22,7 +22,7 @@ func init() {
 
 func readAuthCreds() (string, string, error) {
 	homedir := os.Getenv("HOME")
-	confpath := filepath.Join(homedir, ".zcash/zcash.conf")
+	confpath := filepath.Join(homedir, ".bzedge/bzedge.conf")
 	fi, err := os.Open(confpath)
 	if err != nil {
 		return "", "", err
